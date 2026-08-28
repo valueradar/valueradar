@@ -1,0 +1,22 @@
+name: Check generated catalogue
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  catalogue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Build from products database
+        run: python scripts/build_products.py
+      - name: Ensure generated files are committed
+        run: git diff --exit-code -- products sitemap.xml
