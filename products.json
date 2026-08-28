@@ -1,5 +1,48 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "updated_at": null,
-  "products": []
+  "products": [],
+  "field_guide": {
+    "id": "Stable ValueRadar code such as VR001",
+    "slug": "SEO-friendly page slug",
+    "status": "draft | published | archived",
+    "name": "Product display name",
+    "category": "ValueRadar category",
+    "verdict": "GOOD_VALUE | GENUINE_DEAL | HIGHLY_RATED | PRICE_DROP | USEFUL_FIND | SKIP",
+    "summary": "Short shopper-focused explanation",
+    "why_picked": "Original ValueRadar reasoning",
+    "good_for": ["Use cases or shopper types"],
+    "watch_out": ["Limitations or cautions"],
+    "specs": {},
+    "signals": {
+      "rating": null,
+      "rating_count": null,
+      "price_checked": null,
+      "currency": "INR",
+      "checked_at": null,
+      "price_history_note": null
+    },
+    "scores": {
+      "usefulness": null,
+      "customer_feedback": null,
+      "value": null,
+      "features": null,
+      "overall": null
+    },
+    "marketplaces": {
+      "amazon": {"url": null, "affiliate": false, "asin": null},
+      "flipkart": {"url": null, "affiliate": false, "pid": null}
+    },
+    "media": {
+      "image": null,
+      "image_alt": null
+    },
+    "seo": {
+      "title": null,
+      "description": null
+    },
+    "sources": [],
+    "published_at": null,
+    "updated_at": null
+  }
 }
