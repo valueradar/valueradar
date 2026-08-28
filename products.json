@@ -1,5 +1,48 @@
 {
-  "schema_version": 1,
-  "updated_at": null,
-  "products": []
+  "schema_version": 2,
+  "updated_at": "2026-08-28",
+  "products": [
+    {
+      "id": "VR001",
+      "slug": "atom-aliston-sf400-kitchen-scale",
+      "status": "published",
+      "name": "ATOM / Aliston K1 Series A121 / SF-400 Digital Kitchen Scale",
+      "category": "Home & Kitchen",
+      "verdict": "GOOD_VALUE",
+      "summary": "A simple 10 kg digital kitchen scale with 1 g readout, tare function and multiple weighing modes. Its low typical selling price makes it a practical basic kitchen tool rather than a premium precision scale.",
+      "why_picked": "It solves a clear everyday problem at a low purchase price: portioning ingredients, measuring food and handling basic household weighing. The tracked price has repeatedly stayed in the low-₹200 range, so we prefer a Good Value verdict rather than claiming an exceptional or lowest-ever deal.",
+      "good_for": ["Everyday kitchen weighing", "Recipe portioning", "Budget-conscious buyers", "Basic food measurement up to 10 kg"],
+      "watch_out": ["The 1 g figure is the display/readout increment; do not treat this as laboratory-grade accuracy.", "Marketplace price, seller and availability can change.", "Check the exact variant and listing details before ordering."],
+      "specs": {"Capacity": "10 kg", "Readout": "1 g", "Tare": "Yes", "Modes": "g, oz and listing-dependent modes", "Model": "SF400"},
+      "signals": {"rating": 4.2, "rating_count": null, "price_checked": 210, "currency": "INR", "checked_at": "2026-08-28", "price_history_note": "Third-party tracker showed repeated prices around ₹204–₹249 during 2026, including ₹210 after a June 2026 drop. Treat tracker data as a research signal, not a marketplace guarantee."},
+      "scores": {"usefulness": 8.5, "customer_feedback": 8.0, "value": 9.0, "features": 7.0, "overall": 8.1},
+      "marketplaces": {"amazon": {"url": "https://www.amazon.in/dp/B083C6XMKQ", "affiliate": false, "asin": "B083C6XMKQ"}, "flipkart": {"url": null, "affiliate": false, "pid": null}},
+      "media": {"image": null, "image_alt": "ATOM Aliston SF-400 digital kitchen weighing scale"},
+      "seo": {"title": "ATOM Aliston SF-400 Kitchen Scale Review | ValueRadar India", "description": "ValueRadar checks the ATOM / Aliston SF-400 10 kg digital kitchen scale for usefulness, value, key features and buying cautions."},
+      "sources": ["Amazon India ASIN B083C6XMKQ", "PriceHistory.app product tracker checked 2026-08-28"],
+      "published_at": null,
+      "updated_at": "2026-08-28"
+    }
+  ],
+  "field_guide": {
+    "id": "Stable ValueRadar code such as VR001",
+    "slug": "SEO-friendly page slug",
+    "status": "draft | published | archived",
+    "name": "Product display name",
+    "category": "ValueRadar category",
+    "verdict": "GOOD_VALUE | GENUINE_DEAL | HIGHLY_RATED | PRICE_DROP | USEFUL_FIND | SKIP",
+    "summary": "Short shopper-focused explanation",
+    "why_picked": "Original ValueRadar reasoning",
+    "good_for": ["Use cases or shopper types"],
+    "watch_out": ["Limitations or cautions"],
+    "specs": {},
+    "signals": {"rating": null, "rating_count": null, "price_checked": null, "currency": "INR", "checked_at": null, "price_history_note": null},
+    "scores": {"usefulness": null, "customer_feedback": null, "value": null, "features": null, "overall": null},
+    "marketplaces": {"amazon": {"url": null, "affiliate": false, "asin": null}, "flipkart": {"url": null, "affiliate": false, "pid": null}},
+    "media": {"image": null, "image_alt": null},
+    "seo": {"title": null, "description": null},
+    "sources": [],
+    "published_at": null,
+    "updated_at": null
+  }
 }
