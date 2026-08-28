@@ -1,226 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-IN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ValueRadar India</title>
-  <meta
-    name="description"
-    content="ValueRadar India helps you discover useful Amazon and Flipkart products, genuine offers and better-value picks."
-  />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ValueRadar India — Find Better. Pay Smarter.</title>
+  <meta name="description" content="AI-assisted shopping research for useful products, price/value signals and smarter Amazon & Flipkart buying decisions in India.">
+  <meta name="theme-color" content="#071b3b">
+  <link rel="canonical" href="https://valueradar.in/">
+  <meta property="og:title" content="ValueRadar India — Find Better. Pay Smarter.">
+  <meta property="og:description" content="Useful finds, price/value checks and AI-assisted shopping research for India.">
+  <meta property="og:url" content="https://valueradar.in/">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="#top" aria-label="ValueRadar home"><span class="radar-dot">V</span><span>ValueRadar<small>Find Better. Pay Smarter.</small></span></a>
+    <nav class="desktop-nav" aria-label="Primary navigation"><a href="#finds">Today's Finds</a><a href="#categories">Categories</a><a href="#method">How It Works</a><a href="#about">About</a></nav>
+    <span class="ai-pill">AI-assisted research</span>
+  </div>
+</header>
 
-  <header class="site-header">
-    <div class="container header-wrap">
-      <div>
-        <h1>ValueRadar</h1>
-        <p>Find Better. Pay Smarter.</p>
-      </div>
-      <div class="ai-badge">AI-Assisted Product Research</div>
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="free-tag">🔥 FREE • DAILY VALUE RADAR</span>
+      <h1>Find products worth buying — faster.</h1>
+      <p class="hero-lead">Useful finds. Real value signals. Less shopping noise.</p>
+      <p class="hero-copy">ValueRadar helps you cut through endless listings using AI-assisted research, customer feedback, usefulness and price/value checks.</p>
+      <div class="hero-actions"><a class="primary-cta" href="#finds">Explore today's finds →</a><a class="secondary-cta" href="#categories">Browse categories</a></div>
+      <form class="search" id="searchForm"><input id="productSearch" aria-label="Search products" placeholder="Search VR001, kitchen gadget, under ₹500…" autocomplete="off"><button type="submit">Search</button></form>
+      <p id="searchMessage" class="search-message" aria-live="polite">Seen a ValueRadar post? Enter its VR code here.</p>
+      <div class="hero-shortcuts"><a href="#finds">🔥 Today's Finds</a><a href="#categories">💸 Under ₹500</a><a href="#categories">📉 Price Drops</a><a href="#method">🎯 Worth buying?</a></div>
     </div>
-  </header>
+    <aside class="radar-card">
+      <span class="eyebrow">THE VALUERADAR DIFFERENCE</span>
+      <div class="radar-visual"><div class="ring r1"></div><div class="ring r2"></div><div class="sweep"></div><div class="center-dot"></div></div>
+      <h2>We don't need to recommend everything.</h2>
+      <p>If the value isn't convincing, we can say <strong>Skip</strong>. That makes every recommendation more meaningful.</p>
+      <div class="mini-verdicts"><span>🟢 GOOD VALUE</span><span>🔥 GENUINE DEAL</span><span>💡 USEFUL FIND</span><span>⛔ SKIP</span></div>
+    </aside>
+  </div>
+</section>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <span class="free-tag">FREE • DAILY VALUE RADAR</span>
+<section class="quick-strip"><div class="container quick-grid"><div><strong>Research</strong><span>Useful products</span></div><div><strong>Compare</strong><span>Value & alternatives</span></div><div><strong>Verify</strong><span>Marketplace signals</span></div><div><strong>Decide</strong><span>You stay in control</span></div></div></section>
 
-        <h2>Stop searching hundreds of products.</h2>
+<section class="discovery-banner">
+  <div class="container discovery-inner"><div><span class="eyebrow">START HERE</span><h2>What are you looking for today?</h2></div><div class="intent-chips"><a href="#categories">🏠 Useful for home</a><a href="#categories">⚡ Small gadgets</a><a href="#categories">💰 Best under ₹500</a><a href="#categories">⭐ Highly rated</a><a href="#finds">🆕 Fresh finds</a></div></div>
+</section>
 
-        <p class="hero-text">
-          ValueRadar checks useful products, marketplace ratings, value,
-          pricing signals and offers from Amazon and Flipkart to help you
-          find products worth considering.
-        </p>
-
-        <div class="trust-row">
-          <span>✓ Amazon & Flipkart</span>
-          <span>✓ Price checks</span>
-          <span>✓ Review signals</span>
-          <span>✓ No fake urgency</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="search-section">
-      <div class="container">
-        <h3>Find a ValueRadar Product</h3>
-
-        <div class="search-box">
-          <input
-            id="productSearch"
-            type="text"
-            placeholder="Search VR001, kitchen scale, gadget..."
-          />
-          <button onclick="searchProducts()">Search</button>
-        </div>
-
-        <p class="search-help">
-          Seen a product on Instagram or Facebook? Search its VR code here.
-        </p>
-      </div>
-    </section>
-
-    <section class="categories">
-      <div class="container">
-        <h3>Browse Finds</h3>
-
-        <div class="category-grid">
-          <div class="category-card">🔥 Today's Finds</div>
-          <div class="category-card">📉 Price Drops</div>
-          <div class="category-card">🏠 Home & Kitchen</div>
-          <div class="category-card">🔌 Useful Gadgets</div>
-          <div class="category-card">💰 Under ₹500</div>
-          <div class="category-card">⭐ Highly Rated</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="products-section">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <span class="small-label">VALUERADAR AI FIND</span>
-            <h3>Today's Featured Product</h3>
-          </div>
-        </div>
-
-        <div id="productsContainer">
-          <article class="product-card" data-search="vr001 atom a121 digital kitchen scale kitchen">
-            <div class="product-code">VR001</div>
-
-            <div class="product-content">
-              <div>
-                <span class="product-status">Useful Find</span>
-                <h4>ATOM A121 Digital Kitchen Scale</h4>
-
-                <p>
-                  A simple kitchen weighing scale for cooking, baking,
-                  meal prep and portion measurement.
-                </p>
-
-                <div class="product-stats">
-                  <div>
-                    <strong>4.2/5</strong>
-                    <span>Amazon rating</span>
-                  </div>
-
-                  <div>
-                    <strong>26K+</strong>
-                    <span>Ratings</span>
-                  </div>
-
-                  <div>
-                    <strong>1 g</strong>
-                    <span>Readout</span>
-                  </div>
-
-                  <div>
-                    <strong>10 kg</strong>
-                    <span>Capacity</span>
-                  </div>
-                </div>
-
-                <div class="verdict">
-                  <strong>ValueRadar verdict:</strong>
-                  Good-value basic kitchen tool. Check the latest marketplace
-                  price before ordering.
-                </div>
-
-                <div class="product-actions">
-                  <a
-                    href="https://www.amazon.in/dp/B083C6XMKQ"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn amazon-btn"
-                  >
-                    Check on Amazon
-                  </a>
-                </div>
-
-                <p class="price-note">
-                  Prices and availability can change. Always verify the latest
-                  price and offer on the marketplace before purchasing.
-                </p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="how-it-works">
-      <div class="container">
-        <h3>How ValueRadar Works</h3>
-
-        <div class="steps-grid">
-          <div class="step">
-            <span>1</span>
-            <h4>We Research</h4>
-            <p>We look for useful products and offer signals.</p>
-          </div>
-
-          <div class="step">
-            <span>2</span>
-            <h4>We Compare</h4>
-            <p>We check ratings, usefulness, price and value.</p>
-          </div>
-
-          <div class="step">
-            <span>3</span>
-            <h4>You Decide</h4>
-            <p>Open Amazon or Flipkart and verify the current offer.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <strong>ValueRadar India</strong>
-      <p>AI-assisted research for smarter Amazon & Flipkart shopping.</p>
-      <p class="footer-note">
-        ValueRadar does not guarantee marketplace prices, availability or
-        product performance. Always review the final listing before purchase.
-      </p>
+<section id="categories" class="section">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">SHOP SMARTER</span><h2>Browse ValueRadar</h2></div><p>Jump straight to the kind of products people actually shop for — without scrolling through hundreds of listings.</p></div>
+    <div class="category-grid">
+      <button data-filter="today">🔥 <strong>Today's Finds</strong><span>Freshly researched picks</span></button>
+      <button data-filter="drops">📉 <strong>Price Drops</strong><span>Meaningful price signals</span></button>
+      <button data-filter="home">🏠 <strong>Home & Kitchen</strong><span>Practical everyday finds</span></button>
+      <button data-filter="gadgets">🔌 <strong>Useful Gadgets</strong><span>Tech that solves a problem</span></button>
+      <button data-filter="under500">💸 <strong>Under ₹500</strong><span>Low-cost useful buys</span></button>
+      <button data-filter="rated">⭐ <strong>Highly Rated</strong><span>Strong feedback signals</span></button>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    function searchProducts() {
-      const input = document.getElementById("productSearch");
-      const query = input.value.trim().toLowerCase();
-      const products = document.querySelectorAll(".product-card");
+<section id="finds" class="section soft">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">THE MAIN EVENT</span><h2>Today's researched finds</h2></div><p>This will become the most important section: fast product cards with a clear verdict, why it matters and where to check it.</p></div>
+    <div id="productsContainer" class="product-grid">
+      <div class="preview-card"><div class="preview-top"><span class="preview-code">VR---</span><span class="preview-status">💡 USEFUL FIND</span></div><div class="preview-body"><div class="preview-image">Product<br>image</div><div><span class="eyebrow">WHAT A LIVE CARD WILL SHOW</span><h3>One useful product. One clear decision.</h3><p>Product name, key benefit, marketplace feedback, ValueRadar verdict and a direct button to check the current offer.</p><div class="preview-metrics"><span><b>★</b> Rating signal</span><span><b>₹</b> Value check</span><span><b>✓</b> Why we picked it</span></div><button disabled>Check current price →</button></div></div></div>
+    </div>
+  </div>
+</section>
 
-      let found = false;
+<section id="method" class="section">
+  <div class="container"><div class="section-head centered"><div><span class="eyebrow">OUR METHOD</span><h2>Four steps. One clearer decision.</h2></div></div><div class="steps"><article><b>01</b><h3>Discover</h3><p>Find useful products and shopping opportunities across major marketplaces.</p></article><article><b>02</b><h3>Analyse</h3><p>Review specifications, customer feedback, usefulness and value signals.</p></article><article><b>03</b><h3>Compare</h3><p>Look at alternatives and marketplace options instead of trusting a discount badge.</p></article><article><b>04</b><h3>Verdict</h3><p>Highlight what's worth checking — and say Skip when the case isn't convincing.</p></article></div><div class="verdicts"><span class="good">● GOOD VALUE</span><span class="deal">● GENUINE DEAL</span><span class="useful">● USEFUL FIND</span><span class="skip">● SKIP</span></div></div>
+</section>
 
-      products.forEach((product) => {
-        const searchText = product.dataset.search.toLowerCase();
+<section class="follow-strip"><div class="container follow-inner"><div><span class="eyebrow">FOLLOW THE RADAR</span><h2>See useful finds where you already scroll.</h2><p>New finds, quick verdicts and price/value alerts across our social channels.</p></div><div class="social-icons" aria-label="ValueRadar social media"><a href="#" data-social-pending aria-label="Instagram" title="Instagram link coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="fill" cx="17.3" cy="6.8" r="1"></circle></svg><span>Instagram</span></a><a href="#" data-social-pending aria-label="Facebook" title="Facebook link coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-8h3l.5-3H14V8.2c0-.9.3-1.7 1.8-1.7H18V3.8c-.4-.1-1.5-.2-2.7-.2-2.7 0-4.5 1.6-4.5 4.7V10H8v3h2.8v8H14z"></path></svg><span>Facebook</span></a><a href="#" data-social-pending aria-label="YouTube" title="YouTube link coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8.2a2.8 2.8 0 0 0-2-2C17.3 5.7 12 5.7 12 5.7s-5.3 0-7 .5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2.5 12 29 29 0 0 0 3 15.8a2.8 2.8 0 0 0 2 2c1.7.5 7 .5 7 .5s5.3 0 7-.5a2.8 2.8 0 0 0 2-2 29 29 0 0 0 .5-3.8 29 29 0 0 0-.5-3.8z"></path><path class="play" d="m10 9 5 3-5 3z"></path></svg><span>YouTube</span></a></div></div></section>
 
-        if (!query || searchText.includes(query)) {
-          product.style.display = "block";
-          found = true;
-        } else {
-          product.style.display = "none";
-        }
-      });
+<section id="about" class="section about"><div class="container about-grid"><div><span class="eyebrow">WHY VALUERADAR</span><h2>Shopping shouldn't require 30 open tabs.</h2></div><div><p>ValueRadar India is an independent product-discovery and shopping research project built to help Indian shoppers make faster, better-informed buying decisions.</p><p>AI assists the research; the goal is not to guarantee a “best” product. Prices, ratings and availability can change, so final marketplace details should always be verified before purchase.</p></div></div></section>
+</main>
 
-      if (!found) {
-        alert("No matching ValueRadar product found yet.");
-      }
-    }
+<footer><div class="container footer-grid"><div><strong>ValueRadar India</strong><p>Find Better. Pay Smarter.</p></div><div class="footer-links"><a href="#about">About</a><a href="#method">Method</a><a href="mailto:hello@valueradar.in">Contact</a></div></div><div class="container footer-social-mini"><span>Follow:</span><a href="#" data-social-pending>Instagram</a><a href="#" data-social-pending>Facebook</a><a href="#" data-social-pending>YouTube</a></div><div class="container legal">ValueRadar may later use affiliate links. Marketplace prices, availability, ratings and product information can change. Always verify final listing details before purchasing. <span>© <span id="year"></span> ValueRadar India.</span></div></footer>
 
-    document
-      .getElementById("productSearch")
-      .addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          searchProducts();
-        }
-      });
-  </script>
-
+<script>
+const form=document.getElementById('searchForm'),input=document.getElementById('productSearch'),msg=document.getElementById('searchMessage');
+form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();msg.textContent=q?`No published match for “${q}” yet. New researched products are being added soon.`:'Enter a VR code or product name to search.';});
+document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('finds').scrollIntoView({behavior:'smooth'});msg.textContent=`${b.querySelector('strong').textContent} filtering will activate when the product database goes live.`;}));
+document.querySelectorAll('[data-social-pending]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
