@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://valueradar.in/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://valueradar.in/products/atom-aliston-sf400-kitchen-scale/</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://valueradar.in/about.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://valueradar.in/privacy.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://valueradar.in/affiliate-disclosure.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://valueradar.in/disclaimer.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://valueradar.in/terms.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://valueradar.in/</loc></url>
+  <url><loc>https://valueradar.in/about.html</loc></url>
+  <url><loc>https://valueradar.in/privacy.html</loc></url>
+  <url><loc>https://valueradar.in/affiliate-disclosure.html</loc></url>
+  <url><loc>https://valueradar.in/disclaimer.html</loc></url>
+  <url><loc>https://valueradar.in/terms.html</loc></url>
+  <url><loc>https://valueradar.in/products/atom-aliston-sf400-kitchen-scale/</loc></url>
+  <url><loc>https://valueradar.in/products/agaro-elite-rechargeable-mini-chopper-250ml/</loc></url>
+  <url><loc>https://valueradar.in/products/nova-blue-electric-egg-boiler-nec-1530/</loc></url>
+  <url><loc>https://valueradar.in/products/prestige-pgmfb-grill-sandwich-maker/</loc></url>
 </urlset>

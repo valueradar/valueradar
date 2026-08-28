@@ -1,0 +1,5 @@
+date,vr_code,experiment,traffic_source,page_views,marketplace_clicks,orders,commission_inr,notes
+2026-08-28,VR001,baseline,organic,,,,,"Fill after traffic begins"
+2026-08-28,VR002,baseline,organic,,,,,"Fill after traffic begins"
+2026-08-28,VR003,baseline,organic,,,,,"Fill after traffic begins"
+2026-08-28,VR004,baseline,organic,,,,,"Fill after traffic begins"
