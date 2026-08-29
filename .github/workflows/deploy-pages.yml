@@ -30,7 +30,7 @@ jobs:
         run: |
           python scripts/check_catalogue.py
           grep -q 'VR010' index.html
-          grep -q 'VR010' sitemap.xml
+          grep -q 'eveready-hl-58-emergency-light' sitemap.xml
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
