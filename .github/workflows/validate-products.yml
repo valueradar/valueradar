@@ -27,6 +27,10 @@ jobs:
       - name: Confirm generated catalogue
         run: |
           test -f sitemap.xml
+          test -f finds/index.html
+          test -f VR001/index.html
+          test -f VR006/index.html
+          test -f VR010/index.html
           test -f products/atom-aliston-sf400-kitchen-scale/index.html
           test -f products/agaro-elite-rechargeable-mini-chopper-250ml/index.html
           test -f products/nova-blue-electric-egg-boiler-nec-1530/index.html
@@ -35,12 +39,14 @@ jobs:
           test -f products/pigeon-handy-mini-vegetable-fruit-chopper-400ml/index.html
           test -f products/milton-aura-1000-thermosteel-water-bottle/index.html
           test -f products/philips-bt1232-15-beard-trimmer/index.html
-          test -f products/gm-3060-e-book-power-strip/index.html
-          test -f products/eveready-hl-58-emergency-light/index.html
+          test -f products/gm-3060-ebook-4-plus-1-power-strip/index.html
+          test -f products/eveready-hl58-emergency-lantern/index.html
           grep -q 'Tracked reference price' products/atom-aliston-sf400-kitchen-scale/index.html
           grep -q 'Marketplace price observed' products/agaro-elite-rechargeable-mini-chopper-250ml/index.html
           grep -q 'VR010' index.html
-          grep -q 'VR010' sitemap.xml
+          grep -q 'eveready-hl58-emergency-lantern' sitemap.xml
+          grep -q 'finds/' sitemap.xml
+          grep -q 'pigeon-handy-mini-vegetable-fruit-chopper-400ml' VR006/index.html
           grep -q '<!-- PRODUCTS:AUTO:START -->' index.html
           grep -q '<!-- PRODUCT_SEARCH:AUTO:START -->' index.html
           ! grep -q 'Four researched products with clear verdicts' index.html
