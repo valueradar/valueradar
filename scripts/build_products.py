@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Build SEO-friendly ValueRadar product pages, homepage catalogue and sitemap."""
+"""Build SEO-friendly ValueRadar product pages, homepage catalogue, social links and sitemap."""
 from __future__ import annotations
 import html, json, re
 from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT=Path(__file__).resolve().parents[1]
-DB=ROOT/'products.json'; OUT=ROOT/'products'; SITEMAP=ROOT/'sitemap.xml'; INDEX=ROOT/'index.html'
+DB=ROOT/'products.json'; OUT=ROOT/'products'; SITEMAP=ROOT/'sitemap.xml'; INDEX=ROOT/'index.html'; FINDS=ROOT/'finds'
 VERDICTS={'GOOD_VALUE','GENUINE_DEAL','HIGHLY_RATED','PRICE_DROP','USEFUL_FIND','SKIP'}
 SLUG=re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
-STATIC_URLS=['','about.html','privacy.html','affiliate-disclosure.html','disclaimer.html','terms.html']
+STATIC_URLS=['','about.html','privacy.html','affiliate-disclosure.html','disclaimer.html','terms.html','finds/']
 START='<!-- PRODUCTS:AUTO:START -->'; END='<!-- PRODUCTS:AUTO:END -->'
 SCRIPT_START='<!-- PRODUCT_SEARCH:AUTO:START -->'; SCRIPT_END='<!-- PRODUCT_SEARCH:AUTO:END -->'
 VERDICT_ICON={'GOOD_VALUE':'🟢','GENUINE_DEAL':'🔥','HIGHLY_RATED':'⭐','PRICE_DROP':'📉','USEFUL_FIND':'💡','SKIP':'⛔'}
@@ -77,19 +77,36 @@ def home_card(p):
     return f'''<article class="preview-card" data-product="{e(tokens)}"><div class="preview-top"><span class="preview-code">{e(p['id'])}</span><span class="preview-status">{icon} {e(label)}</span></div><div class="preview-body"><div class="preview-image">{e(p['id'])}<br>ValueRadar Find</div><div><span class="eyebrow">{e(p['category'].upper())}</span><h3>{e(p['name'])}</h3><p>{e(p['summary'])}</p><div class="preview-metrics"><span><b>★</b> {rating}</span>{f'<span><b>₹</b> {price}</span>' if price else ''}</div><a class="primary-cta" href="/products/{e(p['slug'])}/">View ValueRadar check →</a></div></div></article>'''
 def write_home(products):
     published=[p for p in products if p.get('status')=='published']
-    text=INDEX.read_text(encoding='utf-8')
-    cards='\n'.join(home_card(p) for p in published)
-    if START in text and END in text:
-        text=text.split(START)[0]+START+'\n'+cards+'\n'+END+text.split(END,1)[1]
+    text=INDEX.read_text(encoding='utf-8'); cards='\n'.join(home_card(p) for p in published)
+    if START in text and END in text: text=text.split(START)[0]+START+'\n'+cards+'\n'+END+text.split(END,1)[1]
     else:
         old=re.search(r'(<div id="productsContainer" class="product-grid">).*?(</div></div></section>\n<section id="method")',text,re.S)
         if not old: raise SystemExit('Homepage productsContainer not found')
         text=text[:old.start()]+old.group(1)+'\n'+START+'\n'+cards+'\n'+END+'\n'+old.group(2)+text[old.end():]
     data=[[p['id'].lower(),f'/products/{p["slug"]}/',' '.join([p['id'],p['name'],p['category']]).lower()] for p in published]
     script=f'''<script>{SCRIPT_START}\nconst products={json.dumps(data,ensure_ascii=False)};\n{SCRIPT_END}const form=document.getElementById('searchForm'),input=document.getElementById('productSearch'),msg=document.getElementById('searchMessage'),cards=[...document.querySelectorAll('.preview-card')];form.addEventListener('submit',e=>{{e.preventDefault();const q=input.value.trim().toLowerCase();if(q&&typeof gtag==='function')gtag('event','site_search',{{search_term:q}});const hit=products.find(p=>p[2].includes(q)&&q.length>1);if(hit){{location.href=hit[1];return}}msg.textContent=q?`No published match for “${{input.value.trim()}}” yet. Try VR001–VR010.`:'Enter a VR code or product name to search.';}});document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{{const f=b.dataset.filter;cards.forEach(c=>{{const d=c.dataset.product;const show=f==='today'||(f==='home'&&d.includes('home'))||(f==='gadgets'&&(d.includes('utility')||d.includes('personal care')))||(f==='under500'&&d.includes('under500'))||(f==='rated'&&d.includes('highly rated'))||(f==='drops'&&d.includes('price drop'));c.style.display=show?'':'none'}});document.getElementById('finds').scrollIntoView({{behavior:'smooth'}});if(typeof gtag==='function')gtag('event','category_interest',{{category_name:b.querySelector('strong').textContent}});}}));document.getElementById('year').textContent=new Date().getFullYear();</script>'''
+    text=re.sub(r'<script><!-- PRODUCT_SEARCH:AUTO:START -->.*?</script></body></html>',script+'</body></html>',text,flags=re.S)
     text=re.sub(r'<script>const products=.*?</script></body></html>',script+'</body></html>',text,flags=re.S)
+    text=re.sub(r'\d+ researched products with clear verdicts and transparent price signals\.',f'{len(published)} researched products with clear verdicts and transparent price signals.',text)
     text=text.replace('Four researched products with clear verdicts and transparent price signals.',f'{len(published)} researched products with clear verdicts and transparent price signals.')
     INDEX.write_text(text,encoding='utf-8')
+def write_short_links(products):
+    for p in products:
+        if p.get('status')!='published': continue
+        d=ROOT/p['id'].upper(); d.mkdir(parents=True,exist_ok=True)
+        target=f'/products/{p["slug"]}/'
+        content=f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>{e(p['id'])} · ValueRadar India</title><link rel="canonical" href="https://valueradar.in/products/{e(p['slug'])}/"><meta http-equiv="refresh" content="0;url={target}"><script>location.replace({json.dumps(target)}+location.search+location.hash)</script></head><body><p>Opening <a href="{target}">{e(p['name'])}</a>…</p></body></html>'''
+        (d/'index.html').write_text(content,encoding='utf-8')
+def write_finds(products):
+    published=[p for p in products if p.get('status')=='published']
+    cards=[]
+    for p in published:
+        s=p.get('signals',{}); price=f'₹{e(s.get("price_checked"))}' if s.get('price_checked') is not None else 'Check price'; rating=f'{e(s.get("rating"))}/5' if s.get('rating') is not None else 'Checked'; icon=VERDICT_ICON.get(p['verdict'],'•')
+        cards.append(f'''<a class="find-card" href="/{e(p['id'])}/"><div><span class="find-code">{e(p['id'])}</span><span class="find-verdict">{icon} {e(p['verdict'].replace('_',' '))}</span></div><h2>{e(p['name'])}</h2><p>{e(p['summary'])}</p><div class="find-meta"><span>★ {rating}</span><span>{price}</span><strong>Check details →</strong></div></a>''')
+    FINDS.mkdir(exist_ok=True)
+    body=''.join(cards)
+    content=f'''<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Today's Finds | ValueRadar India</title><meta name="description" content="Today's ValueRadar India product finds, quick verdicts and direct product checks."><link rel="canonical" href="https://valueradar.in/finds/"><link rel="stylesheet" href="/style.css"><style>.finds-page{{min-height:100vh;background:#f6f8fb;padding-bottom:60px}}.finds-head{{background:#071b3b;color:#fff;padding:34px 0}}.finds-head a{{color:#fff;text-decoration:none;font-weight:900}}.finds-head h1{{font-size:clamp(32px,6vw,52px);margin-top:22px}}.finds-head p{{color:#c8d4e2;max-width:650px;margin-top:8px}}.find-list{{display:grid;gap:14px;padding-top:28px}}.find-card{{display:block;background:#fff;border:1px solid #e4e9f1;border-radius:18px;padding:22px;color:#142033;text-decoration:none;box-shadow:0 8px 25px rgba(18,38,63,.05)}}.find-card:hover{{transform:translateY(-2px)}}.find-card>div,.find-meta{{display:flex;align-items:center;gap:10px;flex-wrap:wrap}}.find-code{{font-weight:900;color:#071b3b}}.find-verdict{{font-size:11px;font-weight:900;background:#eef3f8;padding:5px 8px;border-radius:999px}}.find-card h2{{font-size:20px;margin:12px 0 5px}}.find-card p{{color:#667085;font-size:13px}}.find-meta{{margin-top:15px;font-size:12px}}.find-meta strong{{margin-left:auto;color:#08754e}}@media(max-width:560px){{.find-meta strong{{width:100%;margin-left:0}}}}</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-BJC6CE45VZ"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-BJC6CE45VZ');</script></head><body><main class="finds-page"><header class="finds-head"><div class="container"><a href="/">← ValueRadar India</a><h1>Today's Finds</h1><p>Quick access to the products we're currently researching and sharing. Tap a product to see the ValueRadar check before visiting the marketplace.</p></div></header><section class="container find-list">{body}</section></main></body></html>'''
+    (FINDS/'index.html').write_text(content,encoding='utf-8')
 def write_sitemap(products):
     urls=[f'https://valueradar.in/{x}' for x in STATIC_URLS]+[f'https://valueradar.in/products/{p["slug"]}/' for p in products if p.get('status')=='published']
     body='\n'.join(f'  <url><loc>{e(u)}</loc></url>' for u in urls); SITEMAP.write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+body+'\n</urlset>\n',encoding='utf-8')
@@ -98,5 +115,5 @@ def main():
     for p in db.get('products',[]):
         if p.get('status')!='published': continue
         d=OUT/p['slug']; d.mkdir(parents=True,exist_ok=True); (d/'index.html').write_text(page(p),encoding='utf-8'); built.append(p['slug'])
-    write_home(db.get('products',[])); write_sitemap(db.get('products',[])); print(f'Built {len(built)} product page(s), homepage catalogue and sitemap')
+    products=db.get('products',[]); write_home(products); write_short_links(products); write_finds(products); write_sitemap(products); print(f'Built {len(built)} product page(s), social short links, finds page, homepage catalogue and sitemap')
 if __name__=='__main__': main()
