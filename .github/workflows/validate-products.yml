@@ -22,6 +22,8 @@ jobs:
           python-version: '3.12'
       - name: Validate and build product pages
         run: python scripts/build_products.py
+      - name: Check catalogue integrity
+        run: python scripts/check_catalogue.py
       - name: Confirm generated catalogue
         run: |
           test -f sitemap.xml
@@ -29,5 +31,16 @@ jobs:
           test -f products/agaro-elite-rechargeable-mini-chopper-250ml/index.html
           test -f products/nova-blue-electric-egg-boiler-nec-1530/index.html
           test -f products/prestige-pgmfb-grill-sandwich-maker/index.html
+          test -f products/cello-quick-boil-lifestyle-electric-kettle-1-5l/index.html
+          test -f products/pigeon-handy-mini-vegetable-fruit-chopper-400ml/index.html
+          test -f products/milton-aura-1000-thermosteel-water-bottle/index.html
+          test -f products/philips-bt1232-15-beard-trimmer/index.html
+          test -f products/gm-3060-e-book-power-strip/index.html
+          test -f products/eveready-hl-58-emergency-light/index.html
           grep -q 'Tracked reference price' products/atom-aliston-sf400-kitchen-scale/index.html
           grep -q 'Marketplace price observed' products/agaro-elite-rechargeable-mini-chopper-250ml/index.html
+          grep -q 'VR010' index.html
+          grep -q 'VR010' sitemap.xml
+          grep -q '<!-- PRODUCTS:AUTO:START -->' index.html
+          grep -q '<!-- PRODUCT_SEARCH:AUTO:START -->' index.html
+          ! grep -q 'Four researched products with clear verdicts' index.html
