@@ -24,6 +24,8 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - name: Apply product media overrides
+        run: python scripts/apply_media_overrides.py
       - name: Generate catalogue, product pages and sitemap
         run: python scripts/build_products.py
       - name: Validate generated site
@@ -31,6 +33,7 @@ jobs:
           python scripts/check_catalogue.py
           grep -q 'VR010' index.html
           grep -q 'eveready-hl58-emergency-lantern' sitemap.xml
+          grep -q 'VR002-thumbnail.png' products/agaro-elite-rechargeable-mini-chopper-250ml/index.html
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
